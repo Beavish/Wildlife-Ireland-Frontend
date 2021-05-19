@@ -4,11 +4,15 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthserviceService {
+export class AuthService {
   constructor(private http:HttpClient) { }
 
 login(username:string,password:string){
   const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ':' + password) });
-  return this.http.get("http://localhost:8080/login",{headers,responseType: 'text' as 'json'})
+  const data = {
+    "username":username,
+    "password":password
+  }
+  return this.http.post("http://localhost:8080/login",{headers,data,responseType: 'text' as 'json'})
   }
 }
