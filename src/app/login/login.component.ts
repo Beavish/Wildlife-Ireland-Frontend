@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     resp.subscribe(data => {
       this.message = data;
       // log the reponse 
-      console.log(JSON.stringify(data));
+      console.log(data);
     // this.router.navigate(["/home"])
     });
   }
