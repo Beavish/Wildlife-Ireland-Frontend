@@ -13,6 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './auth/login/login.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CreatePostComponent } from './post/create-post/create-post.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { AddRecordComponent } from './add-record/add-record.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeComponent,
     HeaderComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    CreatePostComponent,
+    AddRecordComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
+    EditorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
