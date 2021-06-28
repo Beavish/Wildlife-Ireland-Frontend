@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AddRecordComponent } from './add-record/add-record.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AddRecordComponent } from './add-record/add-record.component';
     SignupComponent,
     LoginComponent,
     CreatePostComponent,
-    AddRecordComponent
+    AddRecordComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

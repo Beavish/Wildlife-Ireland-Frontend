@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PostService } from 'src/app/shared/post.service';
 import { throwError } from 'rxjs';
 import { CreatePostPayload } from './create-post.payload';
+import { AuthService } from 'src/app/auth/shared/auth.service'
 
 @Component({
   selector: 'app-create-post',
@@ -15,12 +16,14 @@ export class CreatePostComponent implements OnInit {
   createPostForm!: FormGroup;
   postPayload: CreatePostPayload;
 
-  constructor(private router: Router, private postService: PostService, ) {
+  constructor(private router: Router, private postService: PostService,private authService: AuthService ) {
     this.postPayload = {
 
       title: '',
       content: '',
       create_date: Date.now(),
+      username: this.authService.getUserName(),
+      user_id: this.authService.getUserId(),
     }
   }
 
@@ -35,7 +38,7 @@ export class CreatePostComponent implements OnInit {
     this.postPayload.title = this.createPostForm.get('title')!.value;
     this.postPayload.content = this.createPostForm.get('content')!.value;
     this.postPayload.create_date = Date.now();
-   // this.postPayload.post_id = this.createPostForm.get('post_id')!.value;
+    //this.postPayload.user_id = this.authService.getUserId();
 
     this.postService.createPost(this.postPayload).subscribe((data) => {
       this.router.navigateByUrl('/');

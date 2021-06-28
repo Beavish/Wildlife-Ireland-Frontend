@@ -35,6 +35,7 @@ export class AuthService {
         this.localStorage.store('username', data.username);
         this.localStorage.store('refreshToken', data.refreshToken);
         this.localStorage.store('expiresAt', data.expiresAt);
+        this.localStorage.store('user_id', data.user_id);
 
         this.loggedIn.emit(true);
         this.username.emit(data.username);
@@ -75,6 +76,9 @@ export class AuthService {
 
   getUserName() {
     return this.localStorage.retrieve('username');
+  }
+  getUserId() {
+    return this.localStorage.retrieve('user_id');
   }
   getRefreshToken() {
     return this.localStorage.retrieve('refreshToken');

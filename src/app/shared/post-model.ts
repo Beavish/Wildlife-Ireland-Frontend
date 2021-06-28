@@ -4,5 +4,7 @@ export class PostModel {
     url!: string;
     title!: string;
     create_date!: string;
+    username!:string;
+    user_id!:number;
   
 }
