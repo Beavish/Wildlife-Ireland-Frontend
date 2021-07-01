@@ -4,5 +4,5 @@ export class CreatePostPayload {
     content!: string;
     create_date!: number;
     username!:string;
-    user_id!:number;
+    userId!:number;
 }

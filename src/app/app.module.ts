@@ -17,6 +17,8 @@ import { CreatePostComponent } from './post/create-post/create-post.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { AddRecordComponent } from './add-record/add-record.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { ViewPostComponent } from './post/view-post/view-post.component';
+import { EditPostComponent } from './post/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
     LoginComponent,
     CreatePostComponent,
     AddRecordComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ViewPostComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,

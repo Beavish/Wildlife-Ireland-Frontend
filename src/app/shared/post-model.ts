@@ -5,6 +5,6 @@ export class PostModel {
     title!: string;
     create_date!: string;
     username!:string;
-    user_id!:number;
+    userId!:number;
   
 }

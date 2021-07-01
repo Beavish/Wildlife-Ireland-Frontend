@@ -23,7 +23,7 @@ export class CreatePostComponent implements OnInit {
       content: '',
       create_date: Date.now(),
       username: this.authService.getUserName(),
-      user_id: this.authService.getUserId(),
+      userId: this.authService.getUserId(),
     }
   }
 
