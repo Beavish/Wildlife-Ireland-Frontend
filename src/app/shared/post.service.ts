@@ -8,6 +8,7 @@ import { CreatePostPayload } from '../post/create-post/create-post.payload';
   providedIn: 'root'
 })
 export class PostService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -19,8 +20,16 @@ export class PostService {
     return this.http.post('http://localhost:8080/api/post/new', postPayload);
   }
 
+  updatePost(postPayload: CreatePostPayload): Observable<any> {
+    return this.http.put('http://localhost:8080/api/post/'+ postPayload.post_id, postPayload);
+  }
+
   getPost(id: number): Observable<PostModel> {
     return this.http.get<PostModel>('http://localhost:8080/api/post/' + id);
+  }
+  
+  deletePost(id: number): Observable<PostModel> {
+    return this.http.delete<PostModel>('http://localhost:8080/api/post/' + id);
   }
 
   getAllPostsByUser(name: string): Observable<PostModel[]> {

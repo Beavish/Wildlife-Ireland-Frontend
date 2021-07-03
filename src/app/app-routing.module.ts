@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { CreatePostComponent } from './post/create-post/create-post.component';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 import { AuthGuard } from './auth/auth.guard';
+import { EditorComponent } from '@tinymce/tinymce-angular';
+import { EditPostComponent } from './post/edit-post/edit-post.component';
+import { AddRecordComponent } from './record/add-record/add-record.component';
 
 
 const routes: Routes = [
@@ -15,7 +18,10 @@ const routes: Routes = [
   {path:"login",component:LoginComponent},
   {path:"post",component:CreatePostComponent,  canActivate: [AuthGuard] },
   { path: 'view-post/:id', component: ViewPostComponent  },
+  { path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard]  },
   { path: 'user-profile/:name', component: UserProfileComponent, canActivate: [AuthGuard] },
+  { path: 'add-record', component: AddRecordComponent,}// canActivate: [AuthGuard] },
+
 ];
 
 @NgModule({

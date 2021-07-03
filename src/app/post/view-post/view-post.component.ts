@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostModel } from 'src/app/shared/post-model';
 import { throwError } from 'rxjs';
 import { AuthService } from 'src/app/auth/shared/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -21,14 +22,14 @@ export class ViewPostComponent implements OnInit {
 
 
   constructor(private postService: PostService, private activateRoute: ActivatedRoute,
-    private router: Router, private authService: AuthService) {
+    private router: Router, private authService: AuthService,private toastr: ToastrService) {
     this.postId = this.activateRoute.snapshot.params.id;
-  
+
   }
 
   ngOnInit(): void {
     this.getPostById();
-    
+
   }
 
 
@@ -57,6 +58,19 @@ export class ViewPostComponent implements OnInit {
 
     }
 
+  }
+
+  private deletePost() {
+    this.postService.deletePost(this.postId).subscribe(data => {
+      this.post = data;
+      this.router.navigateByUrl('/');
+      this.toastr.success('Post Deleted Successfully');
+
+    }
+
+      , error => {
+        throwError(error);
+      });
   }
 
 
