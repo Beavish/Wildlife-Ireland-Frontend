@@ -15,12 +15,12 @@
                 <option value="Plant">Plant</option>
               </select>
               <input type="text" [formControlName]="'geo_location'" id="geo_location" class="form-control" style="margin-top: 5px" placeholder="Enter Postcode or click for current location" >
+              <div id="hotel_map"class="form-control"></div>
               <button (click)="getLocation()" class="btnLocateMe">Locate Me</button>
              
 
 
 
-              
 
               
 <!--   
@@ -49,4 +49,6 @@
       </div>
     </div>
   </div>
-  
+  <div class="row">
+    
+</div>

@@ -43,7 +43,8 @@ import { EditPostComponent } from './post/edit-post/edit-post.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
-    EditorModule
+    EditorModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
