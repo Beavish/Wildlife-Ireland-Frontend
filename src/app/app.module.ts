@@ -19,6 +19,7 @@ import { AddRecordComponent } from './record/add-record/add-record.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
+import { WildlifeCrimeComponent } from './wildlife-crime/wildlife-crime.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { EditPostComponent } from './post/edit-post/edit-post.component';
     AddRecordComponent,
     UserProfileComponent,
     ViewPostComponent,
-    EditPostComponent
+    EditPostComponent,
+    WildlifeCrimeComponent
   ],
   imports: [
     BrowserModule,

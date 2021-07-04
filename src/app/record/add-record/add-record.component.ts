@@ -6,11 +6,7 @@ import { RecordService } from 'src/app/shared/record.service';
 import { AddRecordPayload } from './add-record.payload';
 import Map from 'ol/Map';
 import View from 'ol/View';
-import VectorLayer from 'ol/layer/Vector';
-import Style from 'ol/style/Style';
-import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
-import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
 import Geolocation from 'ol/Geolocation';
 
@@ -29,10 +25,6 @@ export class AddRecordComponent implements OnInit {
   map!: Map;
   geolocation?: Geolocation;
   selectedValue = "";
-  
-  
-
-
 
   constructor(private router: Router, private recordService: RecordService) {
     this.addRecordPayload = {
@@ -52,7 +44,7 @@ export class AddRecordComponent implements OnInit {
       quantity: new FormControl('', Validators.required),
       geo_location: new FormControl('', Validators.required),
       classification: new FormControl('', Validators.required),
-      });
+    });
 
     this.map = new Map({
       target: 'hotel_map',
@@ -70,23 +62,22 @@ export class AddRecordComponent implements OnInit {
     });
 
     this.findMapLocation();
-   
+
   }
 
 
-  createPost() {
+  createRecord() {
     this.addRecordPayload.name = this.addRecordForm.get('name')!.value;
     this.addRecordPayload.quantity = this.addRecordForm.get('quantity')!.value;
     this.addRecordPayload.create_date = Date.now();
     this.addRecordPayload.geo_location = JSON.stringify(this.addRecordForm.get('geo_location')!.value);
 
-    console.log(this.selectedValue);
-    if(this.selectedValue){
+    if (this.selectedValue) {
       this.addRecordPayload.plant = true;
-    }else{
+    } else {
       this.addRecordPayload.animal = true;
     }
-    
+
     this.recordService.addRecord(this.addRecordPayload).subscribe((data) => {
       this.router.navigateByUrl('/');
     }, (error: any) => {
@@ -94,7 +85,7 @@ export class AddRecordComponent implements OnInit {
     })
   }
 
-  discardPost() {
+  discardRecord() {
     this.router.navigateByUrl('/');
   }
 
@@ -106,7 +97,7 @@ export class AddRecordComponent implements OnInit {
         const location = longitude + "," + latitude;
         this.addRecordForm.get('geo_location')?.setValue(location);
       });
-    }    else {
+    } else {
       (error: any) => {
         throwError(error);
       }
