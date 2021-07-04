@@ -1,31 +1,41 @@
 <div class="container">
     <div class="row">
-        <hr />
         <div class="container col-md-9">
-            <form class="addRecordForm" [formGroup]="addRecordForm" (ngSubmit)="createRecord()">
+            <!-- Default form contact -->
+            <form class="text-center border border-light p-5" [formGroup]="reportCrimeForm" (ngSubmit)="addCrime()">
+
+                <p class="h4 mb-4">Record WildLife Crime</p>
+
+                <!-- Name
+                  <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name">
+                 -->
+                <!-- Email -->
+                <input type="email" [formControlName]="'email'" id="defaultContactFormEmail" class="form-control mb-4"
+                    placeholder="Your E-mail address">
+
+                <!-- Subject -->
+                <label>Description</label>
+
+
+                <!-- Message -->
                 <div class="form-group">
-                    <div class="addRecordHeader">Add Record</div>
-                    <hr />
-                    <input type="text" [formControlName]="'name'" class="form-control" style="margin-top: 5px"
-                        placeholder="name">
-                    <input type="text" [formControlName]="'quantity'" class="form-control" style="margin-top: 5px"
-                        placeholder="0">
-                    <select [formControlName]="'classification'" class="form-control" [(ngModel)]="selectedValue">
-                        <option value="" disabled>Choose a classiciation</option>
-                        <option value="Animal">Animal</option>
-                        <option value="Plant">Plant</option>
-                    </select>
-                    <input type="text" [formControlName]="'geo_location'" id="geo_location" class="form-control"
-                        style="margin-top: 5px" placeholder="Click Map or Find Current Location button below">
-                    <div id="hotel_map" class="form-control"></div>
-                    <span>
-                        <div style="margin-top: 5px" class="float-right">
-                            <button (click)="discardRecord()" class="btnDiscard">Discard</button>
-                            <button class="btnCreatePost">Submit</button>
-                        </div>
-                    </span>
+                    <textarea class="form-control rounded-0" [formControlName]="'description'"
+                        id="exampleFormControlTextarea2" rows="3"
+                        placeholder="Please provide as much detail as possible"></textarea>
+
                 </div>
+                <input type="text" [formControlName]="'geo_location'" id="geo_location" class="form-control"
+                    style="margin-top: 5px" placeholder="Click Map or Find Current Location button below">
+
+
+                <div id="map" class="form-control"></div>
+
+                <!-- Send button -->
+                <button (click)="discardCrime()" class="btnDiscard">Discard</button>
+                <button class="btnCreateCrime">Submit</button>
+
             </form>
+            <!-- Default form contact -->
             <button (click)="getLocation()" class="btnLocateMe">Locate Me</button>
         </div>
     </div>
