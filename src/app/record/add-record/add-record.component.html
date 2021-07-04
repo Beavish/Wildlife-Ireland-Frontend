@@ -10,7 +10,8 @@
                         placeholder="name">
                     <input type="number" [formControlName]="'quantity'" class="form-control" style="margin-top: 5px"
                         placeholder="0">
-                    <select [formControlName]="'quantity'" class="form-control" style="margin-top: 5px" placeholder="Classification">
+                    <select [formControlName]="'classification'" class="form-control" [(ngModel)]="selectedValue">
+                        <option value="" disabled>Choose a classiciation</option>
                         <option value="Animal">Animal</option>
                         <option value="Plant">Plant</option>
                     </select>

@@ -28,6 +28,9 @@ export class AddRecordComponent implements OnInit {
   addRecordPayload!: AddRecordPayload;
   map!: Map;
   geolocation?: Geolocation;
+  selectedValue = "";
+  
+  
 
 
 
@@ -48,9 +51,8 @@ export class AddRecordComponent implements OnInit {
       name: new FormControl('', Validators.required),
       quantity: new FormControl('', Validators.required),
       geo_location: new FormControl('', Validators.required),
-      plant: new FormControl('', Validators.required),
-      animal: new FormControl('', Validators.required),
-    });
+      classification: new FormControl('', Validators.required),
+      });
 
     this.map = new Map({
       target: 'hotel_map',
@@ -61,14 +63,14 @@ export class AddRecordComponent implements OnInit {
       ],
       view: new View({
         projection: 'EPSG:4326',
-        center: [-7.962320112632559,53.529225191630864],
+        center: [-7.962320112632559, 53.529225191630864],
         zoom: 6,
       }),
-       
+
     });
 
     this.findMapLocation();
-
+   
   }
 
 
@@ -76,14 +78,15 @@ export class AddRecordComponent implements OnInit {
     this.addRecordPayload.name = this.addRecordForm.get('name')!.value;
     this.addRecordPayload.quantity = this.addRecordForm.get('quantity')!.value;
     this.addRecordPayload.create_date = Date.now();
-    this.addRecordPayload.geo_location = this.addRecordForm.get('geo_location')!.value
-    //this.postPayload.user_id = this.authService.getUserId();
-    // if(this.addRecordForm.get('Classification')!.value == 'Animal'){
-    //   this.addRecordPayload.animal = true; 
-    // }else{
-    //   this.addRecordPayload.plant = true; 
-    // }
+    this.addRecordPayload.geo_location = JSON.stringify(this.addRecordForm.get('geo_location')!.value);
 
+    console.log(this.selectedValue);
+    if(this.selectedValue){
+      this.addRecordPayload.plant = true;
+    }else{
+      this.addRecordPayload.animal = true;
+    }
+    
     this.recordService.addRecord(this.addRecordPayload).subscribe((data) => {
       this.router.navigateByUrl('/');
     }, (error: any) => {
@@ -100,15 +103,10 @@ export class AddRecordComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
-
         const location = longitude + "," + latitude;
-
         this.addRecordForm.get('geo_location')?.setValue(location);
-
       });
-    }
-
-    else {
+    }    else {
       (error: any) => {
         throwError(error);
       }
@@ -116,13 +114,9 @@ export class AddRecordComponent implements OnInit {
   }
 
   findMapLocation() {
-    this.map.on('click',  (e) => {
+    this.map.on('click', (e) => {
       this.addRecordForm.get('geo_location')?.setValue(e.coordinate);
     })
   }
-
-
-
-
 
 }
