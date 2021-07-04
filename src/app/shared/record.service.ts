@@ -13,7 +13,7 @@ export class RecordService {
   constructor(private http: HttpClient) { }
 
   addRecord(addRecordPayload: AddRecordPayload):Observable<any>{
-    return this.http.post('http://localhost:8080/api/post/new', addRecordPayload);
+    return this.http.post('http://localhost:8080/api/record/new', addRecordPayload);
 
 
   }

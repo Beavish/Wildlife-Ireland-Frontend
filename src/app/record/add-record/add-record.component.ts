@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ChildActivationStart, Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { RecordService } from 'src/app/shared/record.service';
 import { AddRecordPayload } from './add-record.payload';
@@ -12,6 +12,8 @@ import Icon from 'ol/style/Icon';
 import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
+import Geolocation from 'ol/Geolocation';
+
 // useful https://medium.com/front-end-weekly/angular-9-create-an-interactive-map-with-openlayers-part-i-1b7c30d37ceb
 
 
@@ -25,13 +27,14 @@ export class AddRecordComponent implements OnInit {
   addRecordForm!: FormGroup;
   addRecordPayload!: AddRecordPayload;
   map!: Map;
+  geolocation?: Geolocation;
 
-  
 
-  constructor(private router: Router,private recordService: RecordService ) {
-    this.addRecordPayload= {
+
+  constructor(private router: Router, private recordService: RecordService) {
+    this.addRecordPayload = {
       record_id: 0,
-      create_date:0,
+      create_date: 0,
       plant: false,
       animal: false,
       name: '',
@@ -44,7 +47,7 @@ export class AddRecordComponent implements OnInit {
     this.addRecordForm = new FormGroup({
       name: new FormControl('', Validators.required),
       quantity: new FormControl('', Validators.required),
-      geo_location:new FormControl('', Validators.required),
+      geo_location: new FormControl('', Validators.required),
       plant: new FormControl('', Validators.required),
       animal: new FormControl('', Validators.required),
     });
@@ -57,13 +60,17 @@ export class AddRecordComponent implements OnInit {
         })
       ],
       view: new View({
-        center: olProj.fromLonLat([-6.2364057,53.391747 ]),
-        zoom: 20
-        
-
-      })
+        projection: 'EPSG:4326',
+        center: [-7.962320112632559,53.529225191630864],
+        zoom: 6,
+      }),
+       
     });
+
+    this.findMapLocation();
+
   }
+
 
   createPost() {
     this.addRecordPayload.name = this.addRecordForm.get('name')!.value;
@@ -71,6 +78,11 @@ export class AddRecordComponent implements OnInit {
     this.addRecordPayload.create_date = Date.now();
     this.addRecordPayload.geo_location = this.addRecordForm.get('geo_location')!.value
     //this.postPayload.user_id = this.authService.getUserId();
+    // if(this.addRecordForm.get('Classification')!.value == 'Animal'){
+    //   this.addRecordPayload.animal = true; 
+    // }else{
+    //   this.addRecordPayload.plant = true; 
+    // }
 
     this.recordService.addRecord(this.addRecordPayload).subscribe((data) => {
       this.router.navigateByUrl('/');
@@ -83,22 +95,34 @@ export class AddRecordComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
-  getLocation(){
+  getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=>{
-          const longitude = position.coords.longitude;
-          const latitude = position.coords.latitude;
+      navigator.geolocation.getCurrentPosition((position) => {
+        const longitude = position.coords.longitude;
+        const latitude = position.coords.latitude;
 
-          const location = "Lat "+latitude + " Long "+longitude;
-        
+        const location = longitude + "," + latitude;
+
         this.addRecordForm.get('geo_location')?.setValue(location);
-        
-        });
-    } else {
+
+      });
+    }
+
+    else {
       (error: any) => {
         throwError(error);
       }
     }
   }
- 
+
+  findMapLocation() {
+    this.map.on('click',  (e) => {
+      this.addRecordForm.get('geo_location')?.setValue(e.coordinate);
+    })
+  }
+
+
+
+
+
 }
