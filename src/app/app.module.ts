@@ -20,6 +20,7 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
 import { ViewPostComponent } from './post/view-post/view-post.component';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { WildlifeCrimeComponent } from './wildlife-crime/wildlife-crime.component';
+import { ViewRecordComponent } from './record/view-record/view-record.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { WildlifeCrimeComponent } from './wildlife-crime/wildlife-crime.componen
     UserProfileComponent,
     ViewPostComponent,
     EditPostComponent,
-    WildlifeCrimeComponent
+    WildlifeCrimeComponent,
+    ViewRecordComponent
   ],
   imports: [
     BrowserModule,
