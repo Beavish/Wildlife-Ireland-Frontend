@@ -28,7 +28,7 @@ export class AddRecordComponent implements OnInit {
   addRecordPayload!: AddRecordPayload;
   map!: Map;
   geolocation?: Geolocation;
-  
+  selectedValue!: string;
 
 
 
@@ -72,11 +72,16 @@ export class AddRecordComponent implements OnInit {
   }
 
 
-  createPost() {
+  createRecord() {
     this.addRecordPayload.name = this.addRecordForm.get('name')!.value;
     this.addRecordPayload.quantity = this.addRecordForm.get('quantity')!.value;
     this.addRecordPayload.create_date = Date.now();
     this.addRecordPayload.geo_location = JSON.stringify(this.addRecordForm.get('geo_location')!.value);
+    if(this.selectedValue === "Plant"){
+        this.addRecordPayload.plant = true;
+    }else{
+      this.addRecordPayload.animal = true;
+    }
 
     
     
@@ -111,5 +116,6 @@ export class AddRecordComponent implements OnInit {
       this.addRecordForm.get('geo_location')?.setValue(e.coordinate);
     })
   }
+  
 
 }
