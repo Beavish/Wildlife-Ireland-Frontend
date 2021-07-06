@@ -21,6 +21,8 @@ import { ViewPostComponent } from './post/view-post/view-post.component';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { WildlifeCrimeComponent } from './wildlife-crime/wildlife-crime.component';
 import { ViewRecordComponent } from './record/view-record/view-record.component';
+import { LearnComponent } from './learn/learn.component';
+import { ChartModule } from 'angular2-chartjs';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ViewRecordComponent } from './record/view-record/view-record.component'
     ViewPostComponent,
     EditPostComponent,
     WildlifeCrimeComponent,
-    ViewRecordComponent
+    ViewRecordComponent,
+    LearnComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { ViewRecordComponent } from './record/view-record/view-record.component'
     ToastrModule.forRoot(),
     FontAwesomeModule,
     EditorModule,
-    
+    ChartModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

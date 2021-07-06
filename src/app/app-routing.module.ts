@@ -11,6 +11,7 @@ import { EditorComponent } from '@tinymce/tinymce-angular';
 import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { AddRecordComponent } from './record/add-record/add-record.component';
 import { WildlifeCrimeComponent } from './wildlife-crime/wildlife-crime.component';
+import { ViewRecordComponent } from './record/view-record/view-record.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,8 @@ const routes: Routes = [
   { path: 'user-profile/:name', component: UserProfileComponent, canActivate: [AuthGuard] },
   { path: 'add-record', component: AddRecordComponent,},// canActivate: [AuthGuard] },
   { path: 'report-crime', component: WildlifeCrimeComponent  },
+  { path: 'data', component: ViewRecordComponent  },
+
 
 
 ];
