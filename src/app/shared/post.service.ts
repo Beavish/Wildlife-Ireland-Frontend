@@ -35,4 +35,7 @@ export class PostService {
   getAllPostsByUser(name: string): Observable<PostModel[]> {
     return this.http.get<PostModel[]>('http://localhost:8080/api/post/by-user/' + name);
   }
+  getEducationalPosts(): Observable<PostModel[]> {
+    return this.http.get<PostModel[]>('http://localhost:8080/api/post/educational/' );
+  }
 }

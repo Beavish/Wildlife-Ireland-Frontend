@@ -23,6 +23,7 @@ import { WildlifeCrimeComponent } from './wildlife-crime/wildlife-crime.componen
 import { ViewRecordComponent } from './record/view-record/view-record.component';
 import { LearnComponent } from './learn/learn.component';
 import { ChartModule } from 'angular2-chartjs';
+import { AllPostsComponent } from './post/all-posts/all-posts.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ChartModule } from 'angular2-chartjs';
     EditPostComponent,
     WildlifeCrimeComponent,
     ViewRecordComponent,
-    LearnComponent
+    LearnComponent,
+    AllPostsComponent
   ],
   imports: [
     BrowserModule,

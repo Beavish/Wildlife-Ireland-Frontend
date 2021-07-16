@@ -5,4 +5,5 @@ export class CreatePostPayload {
     create_date!: number;
     username!:string;
     userId!:number;
+    educational!:boolean;
 }

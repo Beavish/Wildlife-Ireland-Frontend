@@ -2,10 +2,10 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="flex-grow-1">
             <a aria-label="Home" class="logo" routerLink="/">
-                <svg xmlns="http://www.w3.org/2000/svg"  class="reddit-icon-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="reddit-icon-svg">
                     <g>
-                     
-                        
+
+
                         <image href="/assets/img/deer.png" class="reddit-icon-svg" />
                     </g>
                 </svg>
@@ -14,15 +14,38 @@
                 </span>
             </a>
         </div>
+        <!-- Collapsible content -->
+        <links>
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a routerLink="/articles" class="nav-link waves-light" mdbWavesEffect>Articles<span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/" class="nav-link waves-light" mdbWavesEffect>Learn</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/data" class="nav-link waves-light" mdbWavesEffect>Data</a>
+                </li>
+
+
+
+            </ul>
+            <!-- Links -->
+        </links>
+
         <div class="flex-grow-1 float-right">
             <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button (click)="goToUserProfile()" ngbDropdownItem>  <img class="account-icon" src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png">
+                    <button (click)="goToUserProfile()" ngbDropdownItem> <img class="account-icon"
+                            src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png">
                         {{username}}</button>
                     <button (click)="logout()" ngbDropdownItem>Logout</button>
                 </div>
-               
-            </div>            
+
+            </div>
             <div *ngIf="!isLoggedIn">
                 <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
                 <a routerLink="/login" class="float-right login mr-2">Login</a>

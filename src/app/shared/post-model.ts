@@ -6,5 +6,6 @@ export class PostModel {
     create_date!: string;
     username!:string;
     userId!:number;
+    educational!: boolean;
   
 }

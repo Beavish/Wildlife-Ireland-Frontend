@@ -12,6 +12,8 @@ import { EditPostComponent } from './post/edit-post/edit-post.component';
 import { AddRecordComponent } from './record/add-record/add-record.component';
 import { WildlifeCrimeComponent } from './wildlife-crime/wildlife-crime.component';
 import { ViewRecordComponent } from './record/view-record/view-record.component';
+import { AllPostsComponent } from './post/all-posts/all-posts.component';
+import { LearnComponent } from './learn/learn.component';
 
 
 const routes: Routes = [
@@ -25,8 +27,8 @@ const routes: Routes = [
   { path: 'add-record', component: AddRecordComponent,},// canActivate: [AuthGuard] },
   { path: 'report-crime', component: WildlifeCrimeComponent  },
   { path: 'data', component: ViewRecordComponent  },
-
-
+  { path: 'articles', component: AllPostsComponent  },
+  { path: 'learn', component: LearnComponent  },
 
 ];
 

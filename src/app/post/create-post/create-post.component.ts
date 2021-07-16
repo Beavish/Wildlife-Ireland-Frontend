@@ -24,6 +24,7 @@ export class CreatePostComponent implements OnInit {
       create_date: Date.now(),
       username: this.authService.getUserName(),
       userId: this.authService.getUserId(),
+      educational: false,
     }
   }
 
@@ -31,6 +32,7 @@ export class CreatePostComponent implements OnInit {
     this.createPostForm = new FormGroup({
       title: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
+      checkbox: new FormControl('',Validators.required),
     });
   }
 
@@ -38,6 +40,7 @@ export class CreatePostComponent implements OnInit {
     this.postPayload.title = this.createPostForm.get('title')!.value;
     this.postPayload.content = this.createPostForm.get('content')!.value;
     this.postPayload.create_date = Date.now();
+    this.postPayload.educational = this.createPostForm.get('checkbox')?.value;
     //this.postPayload.user_id = this.authService.getUserId();
 
     this.postService.createPost(this.postPayload).subscribe((data) => {

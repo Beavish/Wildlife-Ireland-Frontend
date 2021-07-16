@@ -32,7 +32,8 @@ export class EditPostComponent implements OnInit {
       create_date: Date.now(),
       username: this.authService.getUserName(),
       userId: this.authService.getUserId(),
-      post_id:this.postId
+      post_id:this.postId,
+      educational: false,
     }
 
   }
@@ -52,6 +53,8 @@ export class EditPostComponent implements OnInit {
       this.editPostForm = new FormGroup({
         title: new FormControl(data.title, Validators.required),
         content: new FormControl(data.content, Validators.required),
+        checkbox: new FormControl('',Validators.required),
+
       });
 
 
@@ -67,6 +70,8 @@ export class EditPostComponent implements OnInit {
     this.postPayload.title = this.editPostForm.get('title')!.value;
     this.postPayload.content = this.editPostForm.get('content')!.value;
     this.postPayload.create_date = Date.now();
+    this.postPayload.educational = this.editPostForm.get('checkbox')?.value;
+
     
 
     this.postService.updatePost(this.postPayload).subscribe((data) => {
