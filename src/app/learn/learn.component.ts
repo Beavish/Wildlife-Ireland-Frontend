@@ -16,8 +16,8 @@ export class LearnComponent implements OnInit {
 constructor(private activatedRoute: ActivatedRoute, private postService: PostService,
  ) {
 
-  this.postService.getAllPosts().subscribe(data => {
-  //  this.data.forEach(i =>this.names.push(i.name));
+  this.postService.getEducationalPosts().subscribe(data => {
+  this.posts = data;
    
   });
   
