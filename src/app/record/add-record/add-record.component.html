@@ -19,11 +19,15 @@
                         style="margin-top: 5px" placeholder="Click Map or Find Current Location button below">
                     <div id="hotel_map" class="form-control"></div>
                     <span>
-                        <div style="margin-top: 5px" class="float-right">
-                            <button (click)="discardRecord()" class="btnDiscard">Discard</button>
-                            <button class="btnCreatePost">Submit</button>
-                        </div>
+                        <!-- IMAGE UPLOAD AND PREVIEW -->
+                        <span style="color:red;" *ngIf="message">{{message}}</span>
+                        <input [formControlName]="'imgURL'"  #file type="file" accept='image/*' (change)="preview(file.files)" />
+                        <img [src]="imgURL" height="200" *ngIf="imgURL">
                     </span>
+                </div>
+                <div style="margin-top: 5px" class="float-right">
+                    <button (click)="discardRecord()" class="btnDiscard">Discard</button>
+                    <button class="btnCreatePost">Submit</button>
                 </div>
             </form>
             <button (click)="getLocation()" class="btnLocateMe">Locate Me</button>
