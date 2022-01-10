@@ -31,8 +31,17 @@
                 <button class="btnCreatePost">Post</button>
               </div>
             </span>
+
+            <span>
+              <!-- IMAGE UPLOAD AND PREVIEW -->
+              <span style="color:red;" *ngIf="message">{{message}}</span>
+              <input [formControlName]="'imgURL'"  #file type="file" accept='image/*' (change)="preview(file.files)" />
+             
+          </span>
           </div>
         </form>
       </div>
     </div>
+    <img [src]="imgURL" height="200" *ngIf="imgURL">
+    
   </div>

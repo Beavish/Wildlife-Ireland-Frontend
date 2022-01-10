@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AddImagePayload } from './create-image.payload';
+//import { AddImagePayload } from './create-image.payload';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,13 @@ export class ImageService {
 
     return this.http.post('http://localhost:8080/api/image/new', formData, )
     ;}
+    addPostImage(file: File, post_id: string ):Observable<any>{
+      const formData = new FormData();
+      formData.append('post_id',post_id);
+      formData.append('file', file);
+  
+      return this.http.post('http://localhost:8080/api/postimage/new', formData, )
+      ;}
 
 
 }

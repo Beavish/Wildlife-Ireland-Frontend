@@ -14,7 +14,7 @@ import OSM from 'ol/source/OSM';
 import * as olProj from 'ol/proj';
 import TileLayer from 'ol/layer/Tile';
 import Geolocation from 'ol/Geolocation';
-import { AddImagePayload } from 'src/app/shared/create-image.payload';
+// { AddImagePayload } from 'src/app/shared/create-image.payload';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 // useful https://medium.com/front-end-weekly/angular-9-create-an-interactive-map-with-openlayers-part-i-1b7c30d37ceb
@@ -29,7 +29,7 @@ export class AddRecordComponent implements OnInit {
 
   addRecordForm!: FormGroup;
   addRecordPayload!: AddRecordPayload;
-  addImagePayload?: AddImagePayload;
+ // addImagePayload?: AddImagePayload;
   map!: Map;
   geolocation?: Geolocation;
   selectedValue!: string;
@@ -49,10 +49,10 @@ export class AddRecordComponent implements OnInit {
       name: '',
       quantity: 0,
       geo_location!: ''
-    },
-    this.addImagePayload={
-      file:this.myfile, 
-    }
+    }//,
+    // this.addImagePayload={
+    //   file:this.myfile, 
+    // }
    
   }
 
@@ -152,7 +152,7 @@ export class AddRecordComponent implements OnInit {
 
   createImage(record_id : number){
     console.log(record_id)
-      this.addImagePayload!.file = this.myfile;
+  //    this.addImagePayload!.file = this.myfile;
 
       this.imageService.addImage(this.myfile!,JSON.stringify(record_id)).subscribe((data) => {
         console.log(data);
@@ -161,6 +161,7 @@ export class AddRecordComponent implements OnInit {
         throwError(error);
       });
   }
+  
   
 
 }
