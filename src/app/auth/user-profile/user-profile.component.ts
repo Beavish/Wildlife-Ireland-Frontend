@@ -19,6 +19,7 @@ export class UserProfileComponent implements OnInit {
 
     this.postService.getAllPostsByUser(this.name).subscribe(data => {
       this.posts = data;
+      console.log(data);
      
     });
     
